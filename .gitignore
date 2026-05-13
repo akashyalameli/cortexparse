@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node
+node_modules/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Mac
+.DS_Store
+
+# Logs
+*.log
+
+# Build
+dist/
+build/
+
+# Training Artifacts
+training/cache/
+
+# Temporary files
+tmp/
+temp/
