@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: cortexparse-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: cortexparse
+      RABBITMQ_DEFAULT_PASS: cortexparse
+    networks:
+      - cortexparse-network
+
+  minio:
+    image: minio/minio
+    container_name: cortexparse-minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: cortexparse
+      MINIO_ROOT_PASSWORD: cortexparse
+    volumes:
+      - minio-data:/data
+    networks:
+      - cortexparse-network
+
+  ollama:
+    image: ollama/ollama
+    container_name: cortexparse-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - cortexparse-network
+
+networks:
+  cortexparse-network:
+
+volumes:
+  minio-data:
+  ollama-data:
