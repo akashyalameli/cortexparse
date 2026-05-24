@@ -29,16 +29,6 @@ services:
     networks:
       - cortexparse-network
 
-  ollama:
-    image: ollama/ollama
-    container_name: cortexparse-ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama-data:/root/.ollama
-    networks:
-      - cortexparse-network
-
 networks:
   cortexparse-network:
 
