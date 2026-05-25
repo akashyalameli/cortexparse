@@ -12,6 +12,7 @@ from graph.nodes.correction import correction_node
 from graph.nodes.publisher import publisher_node
 from graph.nodes.retry_controller import retry_controller_node
 from graph.nodes.retry_controller import retry_router
+from graph.nodes.cleanup import cleanup_node
 
 
 workflow = StateGraph(WorkflowState)
@@ -24,6 +25,7 @@ workflow.add_node("validation", validation_node)
 workflow.add_node("correction", correction_node)
 workflow.add_node("retry_controller", retry_controller_node)
 workflow.add_node("publisher", publisher_node)
+workflow.add_node("cleanup", cleanup_node)
 
 workflow.set_entry_point("document_loader")
 
@@ -44,6 +46,7 @@ workflow.add_conditional_edges(
 )
 
 workflow.add_edge("correction", "validation")
-workflow.add_edge("publisher", END)
+workflow.add_edge("publisher", "cleanup")
+workflow.add_edge("cleanup", END)
 
 app_workflow = workflow.compile()

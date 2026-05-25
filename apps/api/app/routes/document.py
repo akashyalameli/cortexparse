@@ -5,16 +5,37 @@ from fastapi import File
 from fastapi import HTTPException
 from fastapi import UploadFile
 
+from pathlib import Path
+
 from graph.workflow import app_workflow
+from shared.document_storage import upload_document as upload_document_to_storage
 
 
 router = APIRouter()
 
-SUPPORTED_TYPES = [
-    "image/png",
+SUPPORTED_TYPES = {
+    "application/pdf",
     "image/jpeg",
-    "application/pdf"
-]
+    "image/jpg",
+    "image/png",
+}
+
+SUPPORTED_EXTENSIONS = {
+    ".jpeg",
+    ".jpg",
+    ".pdf",
+    ".png",
+}
+
+SUPPORTED_FILE_ACCEPT = ".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
+
+
+def is_supported_file(file: UploadFile) -> bool:
+
+    content_type = (file.content_type or "").lower()
+    suffix = Path(file.filename or "").suffix.lower()
+
+    return content_type in SUPPORTED_TYPES or suffix in SUPPORTED_EXTENSIONS
 
 
 @router.post("/document/upload")
@@ -22,25 +43,44 @@ async def upload_document(
     template_id: str,
     file: UploadFile = File(
         ...,
-        description="Supported formats: PNG, JPG, JPEG, PDF"
+        description="Supported formats: PNG, JPG, JPEG, PDF",
+        media_type=SUPPORTED_FILE_ACCEPT,
+        json_schema_extra={
+            "accept": SUPPORTED_FILE_ACCEPT,
+            "contentMediaType": SUPPORTED_FILE_ACCEPT,
+        },
     )
 ):
     
-    if file.content_type not in SUPPORTED_TYPES:
+    if not is_supported_file(file):
 
         raise HTTPException(
             status_code=400,
-            detail="Unsupported file type"
+            detail="Unsupported file type. Supported formats: PNG, JPG, JPEG, PDF"
         )
 
     workflow_id = str(uuid.uuid4())
+
+    temp_path = Path("tmp") / file.filename
+
+    with open(temp_path, "wb") as buffer:
+
+        content = await file.read()
+
+        buffer.write(content)
+
+
+    upload_document_to_storage(
+        file.filename,
+        str(temp_path)
+    )
 
     initial_state = {
         "session_id": str(uuid.uuid4()),
         "workflow_id": workflow_id,
 
         "document_id": str(uuid.uuid4()),
-        "document_path": file.filename,
+        "document_path": str(temp_path),
 
         "template_id": template_id,
         "document_type": "unknown",

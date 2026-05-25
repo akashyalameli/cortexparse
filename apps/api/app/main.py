@@ -4,6 +4,7 @@ from fastapi import FastAPI
 
 from apps.api.app.routes.document import router as document_router
 from shared.config.runtime_state import runtime_state
+from shared.minio_client import ensure_bucket_exists
 
 
 @asynccontextmanager
@@ -14,6 +15,7 @@ async def lifespan(app: FastAPI):
     runtime_state["few_shot_examples_loaded"] = True
     runtime_state["workflow_initialized"] = True
 
+    ensure_bucket_exists()
     yield
 
 

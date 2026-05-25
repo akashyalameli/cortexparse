@@ -10,6 +10,7 @@ def validation_node(state):
     )
 
     confidence = calculate_confidence(data)
+    print(f"\nConfidence Score: {confidence}\n")
 
     state["overall_confidence_score"] = confidence
 

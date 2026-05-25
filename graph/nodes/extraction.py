@@ -10,24 +10,45 @@ def extraction_node(state):
         "prompts/extraction/document_extraction.txt"
     )
 
-    response = client.generate(
-        model=state["selected_model"],
-        prompt=prompt
-    )
-
-    raw_response = response["response"]
+    print(state["document_path"])
 
     try:
-        parsed = json.loads(raw_response)
 
-    except Exception:
+        response = client.generate(
+            model=state["selected_model"],
+            prompt=prompt,
+            images=[state["document_path"]]
+        )
 
-        parsed = {
-            "raw_response": raw_response
-        }
+        raw_response = response["response"]
 
-    state["extracted_data"] = parsed
+        print("\n=== RAW MODEL RESPONSE ===")
+        print(raw_response)
+        print("==========================\n")
 
-    state["workflow_status"] = "DATA_EXTRACTED"
+        try:
+            parsed = json.loads(raw_response)
 
-    return state
+        except Exception:
+
+            parsed = {
+                "raw_response": raw_response
+            }
+
+        state["extracted_data"] = parsed
+
+        state["workflow_status"] = "DATA_EXTRACTED"
+
+        return state
+    
+    except Exception as ex:
+
+        print("\n=== EXTRACTION ERROR ===")
+        print(str(ex))
+        print("========================\n")
+
+        state["extracted_data"] = {}
+
+        state["workflow_status"] = "EXTRACTION_FAILED"
+
+        return state

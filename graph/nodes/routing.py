@@ -8,7 +8,7 @@ def routing_node(state):
     else:
         model = "qwen2.5vl:7b"
 
-    state["selected_model"] = model
+    state["selected_model"] = "qwen2.5vl:7b"  #model
 
     state["workflow_status"] = "MODEL_SELECTED"
 
