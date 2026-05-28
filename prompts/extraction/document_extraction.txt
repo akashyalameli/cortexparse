@@ -13,6 +13,7 @@ Extract:
 - important fields
 
 Rules:
+- Calculate confidence score for each field extracted
 - Return ONLY valid JSON
 - Do not include markdown
 - Preserve exact values
@@ -24,6 +25,10 @@ Expected JSON format:
 {
   "document_type": "...",
   "fields": {
+    field_name...: {
+      "value": "...",
+      "confidence": ...
+    },
     ...
   }
 }

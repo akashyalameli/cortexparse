@@ -1,0 +1,10 @@
+{
+  "document_type": "synthetic_id_card",
+  "fields": {
+    "organization": "CortexParse Labs",
+    "name": "Nisha Training",
+    "role": "OCR QA Analyst",
+    "id_number": "EMP-SYN-1042",
+    "valid_until": "31/12/2027"
+  }
+}

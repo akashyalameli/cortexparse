@@ -1,5 +1,11 @@
 def template_loader_node(state):
 
-    state["workflow_status"] = "TEMPLATE_LOADED"
+    print("ENTERED NODE: template_loader_node")
 
-    return state
+    #state["workflow_status"] = "TEMPLATE_LOADED"
+
+    return {
+        "template_data": state.get(
+            "template_data"
+        )
+    }

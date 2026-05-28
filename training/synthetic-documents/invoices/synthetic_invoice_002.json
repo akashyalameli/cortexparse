@@ -1,0 +1,13 @@
+{
+  "document_type": "synthetic_invoice",
+  "fields": {
+    "vendor": "Urban Basket Supplies",
+    "buyer": "Sample Retail Store",
+    "invoice_number": "INV-SYN-2026-002",
+    "invoice_date": "18/05/2026",
+    "gstin": "27PQRSX9876L1Z4",
+    "subtotal": 6420.0,
+    "tax_total": 1155.6,
+    "grand_total": 7575.6
+  }
+}

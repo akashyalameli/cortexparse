@@ -1,0 +1,13 @@
+{
+  "document_type": "synthetic_invoice",
+  "fields": {
+    "vendor": "Northstar Labs Pvt Ltd",
+    "buyer": "CortexParse Demo Buyer",
+    "invoice_number": "INV-SYN-2026-001",
+    "invoice_date": "25/05/2026",
+    "gstin": "29ABCDE1234F1Z9",
+    "subtotal": 67800.0,
+    "tax_total": 12204.0,
+    "grand_total": 80004.0
+  }
+}

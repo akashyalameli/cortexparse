@@ -1,0 +1,9 @@
+{
+  "document_type": "synthetic_receipt",
+  "fields": {
+    "merchant": "Cedar Cafe Sample",
+    "receipt_number": "RCPT-SYN-7821",
+    "date": "24/05/2026 09:18",
+    "total": 315.0
+  }
+}

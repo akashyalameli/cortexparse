@@ -51,6 +51,7 @@ async def upload_document(
         },
     )
 ):
+    print("ENTERED /upload API ROUTE")
     
     if not is_supported_file(file):
 
@@ -109,5 +110,10 @@ async def upload_document(
         "workflow_id": workflow_id,
         "status": result["workflow_status"],
         "confidence": result["overall_confidence_score"],
-        "retry_count": result["retry_count"]
+        "retry_count": result["retry_count"],
+        "document_type": result["document_type"],
+        "extracted_data": (
+            result.get("corrected_data")
+            or result.get("extracted_data")
+        )
     }

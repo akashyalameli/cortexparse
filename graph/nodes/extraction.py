@@ -1,10 +1,16 @@
 import json
 
+from pathlib import Path
+
+from shared.image_optimizer import optimize_image
 from shared.ollama_client import client
+from shared.pdf_processor import convert_pdf_to_images
 from shared.prompt_loader import load_prompt
 
 
 def extraction_node(state):
+
+    print("ENTERED NODE: extraction_node")
 
     prompt = load_prompt(
         "prompts/extraction/document_extraction.txt"
@@ -14,10 +20,18 @@ def extraction_node(state):
 
     try:
 
+        document_path = state["document_path"]
+
+        image_inputs = [document_path]
+
+        print("\n=== IMAGE INPUTS ===")
+        print(image_inputs)
+        print("====================\n")
+        
         response = client.generate(
             model=state["selected_model"],
             prompt=prompt,
-            images=[state["document_path"]]
+            images=image_inputs
         )
 
         raw_response = response["response"]

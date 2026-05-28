@@ -1,0 +1,10 @@
+{
+  "document_type": "synthetic_pan",
+  "fields": {
+    "name": "MEERA DEMO",
+    "father_name": "SURESH DEMO",
+    "pan_number": "ZZZPD0000Z",
+    "date_of_birth": "03/11/1988"
+  },
+  "safety": "synthetic_not_valid"
+}

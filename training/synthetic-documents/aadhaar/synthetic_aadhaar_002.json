@@ -1,0 +1,11 @@
+{
+  "document_type": "synthetic_aadhaar",
+  "fields": {
+    "name": "Meera Demo",
+    "aadhaar_number": "0000 0000 0002",
+    "date_of_birth": "03/11/1988",
+    "gender": "Female",
+    "address": "22 Synthetic Lane, Sector 9, Navi Mumbai 400706"
+  },
+  "safety": "synthetic_not_valid"
+}

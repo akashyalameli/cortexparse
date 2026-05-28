@@ -1,5 +1,8 @@
 def document_loader_node(state):
 
-    state["workflow_status"] = "DOCUMENT_LOADED"
+    print("ENTERED NODE: document_loader_node")
 
-    return state
+    return {
+        "document_path": state["document_path"],
+        "workflow_status": "DOCUMENT_LOADED"
+    }

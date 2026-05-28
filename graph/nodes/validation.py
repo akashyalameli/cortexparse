@@ -3,17 +3,22 @@ from shared.confidence import calculate_confidence
 
 def validation_node(state):
 
+    print("ENTERED NODE: validation_node")
+
     data = (
-        state["corrected_data"]
-        if state["corrected_data"]
-        else state["extracted_data"]
+        state.get("corrected_data")
+        or state.get("extracted_data")
     )
 
+    print("\n=== VALIDATION INPUT ===")
+    print(data)
+    print("========================\n")
+
     confidence = calculate_confidence(data)
-    print(f"\nConfidence Score: {confidence}\n")
 
-    state["overall_confidence_score"] = confidence
+    print(f"\nOverall Confidence Score: {confidence}\n")
 
-    state["workflow_status"] = "DATA_VALIDATED"
-
-    return state
+    return {
+        "overall_confidence_score": confidence,
+        "workflow_status": "DATA_VALIDATED"
+    }

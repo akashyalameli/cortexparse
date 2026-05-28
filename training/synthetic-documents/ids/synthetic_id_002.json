@@ -1,0 +1,10 @@
+{
+  "document_type": "synthetic_id_card",
+  "fields": {
+    "organization": "Demo University",
+    "name": "Kabir Example",
+    "role": "Research Intern",
+    "id_number": "STU-SYN-2209",
+    "valid_until": "30/06/2027"
+  }
+}

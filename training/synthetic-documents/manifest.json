@@ -1,0 +1,23 @@
+{
+  "dataset": "CortexParse synthetic document samples",
+  "created_for": "local OCR / multimodal LLM extraction testing",
+  "safety_notice": "All samples are fictional, watermarked, and not valid identity, tax, fiscal, or access documents. No official seals, emblems, or real personal data are used.",
+  "formats": [
+    "png",
+    "jpg",
+    "pdf",
+    "json"
+  ],
+  "categories": [
+    "aadhaar-style synthetic IDs",
+    "PAN-style synthetic IDs",
+    "invoices",
+    "receipts",
+    "logos",
+    "generic IDs"
+  ],
+  "recommended_prompt_expectation": {
+    "document_type": "...",
+    "fields": {}
+  }
+}

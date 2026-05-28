@@ -1,0 +1,9 @@
+{
+  "document_type": "synthetic_receipt",
+  "fields": {
+    "merchant": "Urban Basket Demo Mart",
+    "receipt_number": "RCPT-SYN-4519",
+    "date": "25/05/2026 18:42",
+    "total": 273.5
+  }
+}

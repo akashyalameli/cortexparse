@@ -3,6 +3,8 @@ from shared.rabbitmq import publish_message
 
 def publisher_node(state):
 
+    print("ENTERED NODE: publisher_node")
+
     publish_message({
         "workflow_id": state["workflow_id"],
         "status": "COMPLETED",

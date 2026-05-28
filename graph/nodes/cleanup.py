@@ -5,6 +5,8 @@ from shared.document_storage import delete_document
 
 def cleanup_node(state):
 
+    print("ENTERED NODE: cleanup_node")
+
     path = Path(state["document_path"])
 
     if path.exists():

@@ -1,0 +1,10 @@
+{
+  "document_type": "synthetic_pan",
+  "fields": {
+    "name": "AARAV SAMPLE",
+    "father_name": "RAMESH SAMPLE",
+    "pan_number": "ZZZPS0000Z",
+    "date_of_birth": "14/08/1992"
+  },
+  "safety": "synthetic_not_valid"
+}

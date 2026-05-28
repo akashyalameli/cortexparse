@@ -1,0 +1,11 @@
+{
+  "document_type": "synthetic_aadhaar",
+  "fields": {
+    "name": "Aarav Sample",
+    "aadhaar_number": "0000 0000 0001",
+    "date_of_birth": "14/08/1992",
+    "gender": "Male",
+    "address": "Flat 12, Lotus Demo Residency, Indiranagar, Bengaluru 560038"
+  },
+  "safety": "synthetic_not_valid"
+}
