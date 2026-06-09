@@ -10,7 +10,10 @@ class WorkflowState(TypedDict):
     document_path: str
 
     template_id: str
+    template_name: str
+    template_schema: dict
     document_type: str
+    response_mode: str
 
     selected_model: str
 
@@ -20,6 +23,9 @@ class WorkflowState(TypedDict):
 
     field_confidence_scores: dict
     overall_confidence_score: float
+    missing_required_fields: list
+    low_confidence_fields: list
+    response_payload: dict
 
     retry_count: int
     max_retries: int

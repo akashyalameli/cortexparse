@@ -14,7 +14,8 @@ class Settings(BaseSettings):
     MINIO_ENDPOINT: str
     MINIO_ACCESS_KEY: str
     MINIO_SECRET_KEY: str
-    MINIO_BUCKET: str
+    MINIO_DOCUMENT_BUCKET: str
+    MINIO_TEMPLATE_BUCKET: str = "cortexparse-templates"
 
     OLLAMA_BASE_URL: str
 

@@ -3,7 +3,14 @@ from pathlib import Path
 from minio.error import S3Error
 
 from shared.config.settings import settings
-from shared.minio_client import client
+from shared.minio_client import client, ensure_bucket
+
+
+def ensure_document_bucket_exists():
+
+    ensure_bucket(
+        settings.MINIO_DOCUMENT_BUCKET
+    )
 
 
 def upload_document(
@@ -12,7 +19,7 @@ def upload_document(
 ):
 
     client.fput_object(
-        settings.MINIO_BUCKET,
+        settings.MINIO_DOCUMENT_BUCKET,
         object_name,
         file_path
     )
@@ -27,7 +34,7 @@ def delete_document(
     try:
 
         client.remove_object(
-            settings.MINIO_BUCKET,
+            settings.MINIO_DOCUMENT_BUCKET,
             object_name
         )
 

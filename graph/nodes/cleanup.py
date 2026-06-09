@@ -17,6 +17,15 @@ def cleanup_node(state):
         path.name
     )
 
-    state["workflow_status"] = "CLEANED_UP"
+    telemetry = dict(
+        state.get(
+            "telemetry",
+            {}
+        )
+    )
 
-    return state
+    telemetry["cleanup_completed"] = True
+
+    return {
+        "telemetry": telemetry
+    }

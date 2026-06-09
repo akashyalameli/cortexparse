@@ -1,4 +1,13 @@
-def calculate_confidence(extracted_data: dict):
+from typing import Optional
+
+from shared.template_schema import get_field_confidence
+from shared.template_schema import get_schema_fields
+
+
+def calculate_confidence(
+    extracted_data: dict,
+    template_schema: Optional[dict] = None
+):
 
     if not extracted_data:
         return 0.0
@@ -8,26 +17,36 @@ def calculate_confidence(extracted_data: dict):
         {}
     )
 
-    if not fields:
+    if not fields and not template_schema:
         return 0.0
 
     confidence_scores = []
 
-    for field_data in fields.values():
+    if template_schema:
 
-        if not isinstance(field_data, dict):
-            continue
-
-        confidence = field_data.get(
-            "confidence"
+        schema_fields = get_schema_fields(
+            template_schema
         )
 
-        if confidence is None:
-            continue
+        for field_name in schema_fields:
 
-        confidence_scores.append(
-            float(confidence)
-        )
+            confidence_scores.append(
+                get_field_confidence(
+                    fields.get(field_name)
+                )
+            )
+
+    else:
+
+        for field_data in fields.values():
+
+            confidence = get_field_confidence(
+                field_data
+            )
+
+            confidence_scores.append(
+                confidence
+            )
 
     if not confidence_scores:
         return 0.0

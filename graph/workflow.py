@@ -45,9 +45,7 @@ workflow.add_node("human_review", human_review_node)
 
 workflow.add_edge(START, "document_loader")
 
-workflow.add_edge(START, "template_loader")
-
-workflow.add_edge("document_loader", "classification")
+workflow.add_edge("document_loader", "template_loader")
 
 workflow.add_edge("template_loader", "classification")
 
